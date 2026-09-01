@@ -324,9 +324,36 @@
     return Number(n || 0).toLocaleString('es-CL');
   }
 
+  const CURRENCY_SYMBOLS = { UF: 'UF', USD: 'US$', CLP: '$' };
+
+  function formatPrice(p) {
+    if (p.estadoPrecio === 'Conversable') return 'Conversable';
+    if (p.estadoPrecio === 'Por confirmar') return 'Por confirmar';
+
+    const moneda = p.moneda || 'UF';
+    const isUF = moneda === 'UF';
+    const symbol = CURRENCY_SYMBOLS[moneda] || moneda;
+
+    let text = p.precioMax
+      ? (isUF ? `${formatCL(p.precioUF)} - ${formatCL(p.precioMax)} ${symbol}` : `${symbol}${formatCL(p.precioUF)} - ${symbol}${formatCL(p.precioMax)}`)
+      : (isUF ? `${formatCL(p.precioUF)} ${symbol}` : `${symbol}${formatCL(p.precioUF)}`);
+
+    if (p.operacion === 'Arriendo' && p.periodoArriendo) {
+      text += p.periodoArriendo === 'Mensual' ? '/mes' : '/año';
+    }
+    return text;
+  }
+
+  function formatSize(p) {
+    const unidad = p.unidad === 'ha' ? 'HA' : 'M2';
+    return p.tamanoMax
+      ? `${formatCL(p.tamano)} - ${formatCL(p.tamanoMax)}${unidad}`
+      : `${formatCL(p.tamano)}${unidad}`;
+  }
+
   function renderHomeCard(p) {
-    const sizeLabel = p.unidad === 'ha' ? `${formatCL(p.tamano)}HA` : `${formatCL(p.tamano)}M2`;
-    const priceLabel = `${formatCL(p.precioUF)} UF`;
+    const sizeLabel = formatSize(p);
+    const priceLabel = formatPrice(p);
     const img = (p.imagenes && p.imagenes[0]) || '';
     const ubicacion = [p.comuna, p.region].filter(Boolean).join(', ');
     const meta = [ubicacion, p.categoria, sizeLabel].filter(Boolean).join('&emsp;');
