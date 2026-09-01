@@ -25,7 +25,13 @@ module.exports = async (req, res) => {
 
     const data = await airtableRes.json();
 
-    const properties = (data.records || []).map((record) => {
+    // Newest-added first, so the homepage preview (which just takes the first N)
+    // always shows the most recently published listings.
+    const records = (data.records || []).sort(
+      (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
+    );
+
+    const properties = records.map((record) => {
       const f = record.fields || {};
       return {
         id: record.id,
