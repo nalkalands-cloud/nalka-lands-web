@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nalka Lands | Corretaje de terrenos rurales y agrícolas en Chile</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { manrope: ['Manrope', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Manrope', sans-serif; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes bounce-chevron {
+    0%, 100% { transform: translateY(0); opacity: .7; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
+  .chevron-bounce { animation: bounce-chevron 2.2s ease-in-out infinite; }
+</style>
+</head>
+<body class="bg-black text-white antialiased">
+
+  <div class="relative overflow-hidden">
+
+    <video
+      class="absolute inset-0 w-full h-full object-cover z-0"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="assets/img/hero-poster.jpg"
+    >
+      <source src="assets/video/hero-mobile.mp4" media="(max-width: 768px)" type="video/mp4">
+      <source src="assets/video/hero.webm" type="video/webm">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+
+    <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/65 via-black/55 to-black/85"></div>
+
+    <nav id="site-nav" class="fixed top-0 inset-x-0 z-30 px-8 md:px-28 py-6 md:py-8 transition-all duration-300">
+      <div class="max-w-[1190px] mx-auto flex items-center justify-between">
+        <div class="hidden md:flex items-center gap-10 text-xs tracking-[0.15em] uppercase text-white/90">
+          <a href="#quienes-somos" class="hover:text-white transition-colors">Quienes Somos</a>
+          <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+        </div>
+
+        <a href="#" aria-label="Ir al inicio">
+          <img id="nav-logo" src="assets/img/nalka-lands-logo.svg" alt="Nalka Lands" class="h-6 md:h-7 w-auto transition-transform duration-300 origin-center">
+        </a>
+
+        <div class="hidden md:flex items-center gap-10 text-xs tracking-[0.15em] uppercase text-white/90">
+          <a href="/catalogo" class="hover:text-white transition-colors">Catálogo</a>
+          <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+        </div>
+
+        <button id="menu-toggle" aria-label="Abrir menú" class="md:hidden text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden fixed top-[72px] inset-x-0 z-30 bg-black/80 backdrop-blur-sm px-6 py-6 flex flex-col gap-5 text-sm tracking-[0.15em] uppercase text-white/90">
+      <a href="#quienes-somos" class="hover:text-white transition-colors">Quienes Somos</a>
+      <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+      <a href="/catalogo" class="hover:text-white transition-colors">Catálogo</a>
+      <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+    </div>
+
+    <section class="relative z-20 min-h-screen flex flex-col items-center justify-center text-center px-8">
+      <h1 class="reveal font-light text-4xl sm:text-5xl md:text-6xl leading-tight max-w-3xl">
+        Tu terreno,<br>evaluado con criterio
+      </h1>
+      <p class="reveal font-light text-base sm:text-xl text-white/90 mt-6 max-w-md leading-relaxed">
+        Corretaje especializado en terrenos rurales,<br>agrícolas y de desarrollo.
+      </p>
+
+      <div class="reveal flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-10">
+        <a href="#catalogo" class="border border-white/70 rounded-full px-8 py-3 text-xs tracking-[0.15em] uppercase bg-white/10 backdrop-blur-md hover:bg-white/15 transition-colors transform-gpu">
+          Ver Propiedades
+        </a>
+        <a href="/vender" class="text-xs tracking-[0.15em] uppercase text-white/90 hover:text-white transition-colors underline-offset-4 hover:underline">
+          Tengo Una Propiedad
+        </a>
+      </div>
+
+      <a href="#quienes-somos" aria-label="Ir a Quienes Somos" class="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <svg class="chevron-bounce h-6 w-6 text-white/80" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </a>
+    </section>
+
+    <section id="quienes-somos" class="relative z-20 px-8 md:px-28 pt-20 pb-32 md:pt-28 md:pb-44">
+      <div class="max-w-[1190px] mx-auto grid md:grid-cols-[1.3fr_1fr] gap-12 md:gap-16">
+      <div class="reveal">
+        <span class="text-xs tracking-[0.15em] uppercase text-white/70">Quienes Somos</span>
+        <h2 class="mt-5 text-2xl sm:text-3xl md:text-[2rem] leading-snug sm:leading-snug md:leading-snug">
+          <span class="font-semibold">Nalka Lands</span>
+          <span class="font-light text-white/80"> es una </span>
+          <span class="font-semibold">corredora especializada en terrenos</span>
+          <span class="font-light text-white/80"> agrícolas, rurales y de desarrollo, en todo Chile.</span>
+        </h2>
+      </div>
+
+      <div class="reveal md:pt-9 flex flex-col gap-5 text-sm sm:text-[15px] leading-relaxed text-white/85">
+        <p>Trabajamos con mandato exclusivo, lo que nos permite representar cada terreno con información verificada y foco real en el cierre.</p>
+        <p>A diferencia del corretaje generalista, evaluamos el potencial técnico y normativo de cada propiedad antes de publicarla. No vendemos por volumen: seleccionamos lo que publicamos.</p>
+
+        <ul class="flex flex-col gap-4 mt-2">
+          <li class="flex items-start gap-3">
+            <span class="text-white/60 leading-relaxed">→</span>
+            <span>Estudio de título, gravámenes y uso de suelo antes de cada publicación</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-white/60 leading-relaxed">→</span>
+            <span>Servicios legales disponibles para compradores, vendedores y arrendatarios</span>
+          </li>
+        </ul>
+      </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section id="servicios" class="relative bg-[#1c1a20] pt-16">
+    <div class="absolute inset-x-0 -top-[60px] sm:-top-[95px] px-8 md:px-28 z-10">
+      <div class="reveal max-w-[1190px] mx-auto bg-[#373833] rounded-2xl px-8 md:px-14 py-10 md:py-12 grid sm:grid-cols-3 gap-10 sm:gap-0 sm:divide-x sm:divide-white/15">
+        <div class="sm:pr-10">
+          <svg class="h-6 w-6 text-white/80" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M423.08-503.08Q400-526.15 400-560t23.08-56.92Q446.15-640 480-640t56.92 23.08Q560-593.85 560-560t-23.08 56.92Q513.85-480 480-480t-56.92-23.08ZM280-101.54v-263.61q-38-37.39-59-87.54-21-50.16-21-107.31 0-117.08 81.46-198.54T480-840q117.08 0 198.54 81.46T760-560q0 57.15-21 107.31-21 50.15-59 87.54v263.61l-200-60-200 60ZM650-390q70-70 70-170t-70-170q-70-70-170-70t-170 70q-70 70-70 170t70 170q70 70 170 70t170-70ZM320-158.23l160-44.85 160 44.85v-173.23q-33.46 24.61-74.35 38.04Q524.77-280 480-280t-85.65-13.42q-40.89-13.43-74.35-38.04v173.23Zm160-86.62Z"/></svg>
+          <h3 class="mt-4 font-semibold text-base">Terrenos con Criterio</h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/75">Seleccionamos por potencial real, no por volumen. Cada terreno publicado tiene respaldo documental previo.</p>
+        </div>
+
+        <div class="sm:px-10">
+          <svg class="h-6 w-6 text-white/80" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M375.38-624.62v-40h329.24v40H375.38Zm0 110.77v-40h329.24v40H375.38ZM473.85-160H200h273.85Zm0 40H240q-33.85 0-56.92-23.08Q160-166.15 160-200v-110.77h120V-840h520v315.62q-10.77.3-20.5 2.26-9.73 1.97-19.5 5.58V-800H320v489.23h213.85l-40 40H200V-200q0 17 11.5 28.5T240-160h233.85v40Zm95.38 0v-88.38l213.31-212.31q5.92-5.93 12.31-8 6.38-2.08 12.77-2.08 6.61 0 13.38 2.58 6.77 2.57 11.92 7.73l37 37.77q4.93 5.92 7.5 12.31Q880-364 880-357.62q0 6.39-2.46 12.89-2.46 6.5-7.62 12.42L657.62-120h-88.39Zm275.39-237.62-37-37.76 37 37.76Zm-240 202.24h38l138.69-138.93-18.77-19-18.23-19.54-139.69 139.47v38Zm157.92-157.93-18.23-19.54 37 38.54-18.77-19Z"/></svg>
+          <h3 class="mt-4 font-semibold text-base">Revisión Legal Incluída</h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/75">Estudio de título, gravámenes y uso de suelo antes de publicar cualquier predio, sin sorpresas legales.</p>
+        </div>
+
+        <div class="sm:pl-10">
+          <svg class="h-6 w-6 text-white/80" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M468.08-162.31q7.84 0 16.07-3.54 8.23-3.53 13.31-8.61l311.85-311.85q15.07-15.07 23.27-30.84 8.19-15.77 8.19-34.62 0-19.08-8.19-37.04-8.2-17.96-23.27-32.81l-150-150q-14.85-15.07-30.5-22.11-15.66-7.04-34.73-7.04-18.85 0-35 7.04-16.16 7.04-30.46 22.11l-34.85 34.85 74 74.23q11.92 11.69 17.77 26.62 5.84 14.92 5.84 30.3 0 31.24-20.42 51.66-20.42 20.42-51.65 20.42-15.39 0-30.04-4.69-14.65-4.69-26.35-16.39l-76.54-76.3-172.69 172.69q-6.07 6.08-9.11 13.81-3.04 7.73-3.04 15.57 0 14.16 9.08 23.35 9.07 9.19 23.23 9.19 7.84 0 16.07-3.54 8.23-3.53 13.31-8.61L390-535.23l28.31 28.31-126.54 126.77q-6.08 6.07-9.12 13.8-3.03 7.73-3.03 15.58 0 13.39 9.46 22.85t22.84 9.46q7.85 0 16.08-3.54 8.23-3.54 13.31-8.62l136-135.76 28.31 28.3-135.77 136q-5.31 5.08-8.73 13.31-3.43 8.23-3.43 16.08 0 13.38 9.46 22.84 9.47 9.47 22.85 9.47 7.85 0 15.58-3.04t13.8-9.12l136-135.77L583.69-360l-136 136q-6.07 6.08-9.11 14.58-3.04 8.5-3.04 15.57 0 14.16 9.96 22.85 9.96 8.69 22.58 8.69Zm-.23 40q-30.85 0-52.81-22.57-21.96-22.58-19.27-55.74-34 .39-56.62-20.3-22.61-20.7-21.46-57.77-37.07.38-58.42-21.19-21.35-21.58-19.42-56.89-33.39.39-55.85-18.77-22.46-19.15-22.46-53.31 0-15.38 5.96-30.8 5.96-15.43 17.65-27.12l201.23-201 103.31 103.31q5.08 5.31 12.54 8.73 7.46 3.42 16.85 3.42 12.84 0 22.69-8.96 9.85-8.96 9.85-23.35 0-9.38-3.43-16.84-3.42-7.46-8.73-12.54L401.85-771.62q-14.85-15.07-30.89-22.11-16.04-7.04-35.11-7.04-18.85 0-34.23 7.04-15.39 7.04-30.47 22.11l-121.77 122q-12.84 12.85-20.76 30.62-7.93 17.77-8.39 36.69-.46 13.54 2.31 26.04t8.77 23.5L101-502.46q-10.08-16.08-15.77-37.04-5.69-20.96-5.23-42.81.46-27.23 10.92-52.19 10.46-24.96 29.93-44.42l121-121q20.92-20.7 44.27-30.77 23.34-10.08 50.5-10.08 27.15 0 50.11 10.08 22.96 10.07 43.65 30.77l34.85 34.84 34.85-34.84q20.92-20.7 43.88-30.77 22.96-10.08 50.12-10.08 27.15 0 50.5 10.08 23.34 10.07 44.04 30.77l149 149q20.69 20.69 31.92 46.46t11.23 52.92q0 27.16-11.23 50.12-11.23 22.96-31.92 43.65L525.77-146.15q-12.46 12.46-27.12 18.15-14.65 5.69-30.8 5.69ZM339.62-626.92Z"/></svg>
+          <h3 class="mt-4 font-semibold text-base">Comisión solo al cerrar</h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/75">Sin cobros anticipados. Cobramos solo si la operación se concreta, alineando nuestro interés con el tuyo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-20 px-8 md:px-28 pt-[601px] md:pt-[253px]">
+      <div class="max-w-[1190px] mx-auto">
+      <div class="reveal flex items-start gap-8 md:gap-16">
+        <span class="w-20 md:w-28 flex-shrink-0 pt-1 text-xs tracking-[0.15em] uppercase text-white/70">Servicios</span>
+        <h2 class="text-2xl sm:text-3xl md:text-[2rem] leading-snug sm:leading-snug md:leading-snug">
+          <span class="font-light text-white/80">Compra, venta y arriendo de terrenos, </span>
+          <span class="font-semibold">con estudio<br>de título y gestión completa del proceso.</span>
+        </h2>
+      </div>
+
+      <div class="reveal mt-12 md:mt-16 border-t border-white/10">
+        <div class="group border-b border-white/10 py-6 md:py-7 grid md:grid-cols-[1.3fr_1fr] gap-3 md:gap-16 items-start">
+          <div class="flex items-start gap-3">
+            <span class="text-sm sm:text-base font-medium tracking-wider text-white/40 group-hover:text-white/70 transition-colors duration-700 pt-2 sm:pt-3">01</span>
+            <h3 class="text-3xl sm:text-4xl text-white/50 group-hover:text-white transition-colors duration-700">Intermediación</h3>
+          </div>
+          <div class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-56 group-hover:opacity-100 transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="text-lg sm:text-xl leading-relaxed text-white/75">Nos encargamos de todo el proceso, de venta o de arriendo. Buscamos interesados, negociamos y cerramos el trato. Solo cobramos cuando la operación se concreta.</p>
+          </div>
+        </div>
+
+        <div class="group border-b border-white/10 py-6 md:py-7 grid md:grid-cols-[1.3fr_1fr] gap-3 md:gap-16 items-start">
+          <div class="flex items-start gap-3">
+            <span class="text-sm sm:text-base font-medium tracking-wider text-white/40 group-hover:text-white/70 transition-colors duration-700 pt-2 sm:pt-3">02</span>
+            <h3 class="text-3xl sm:text-4xl text-white/50 group-hover:text-white transition-colors duration-700">Mandato exclusivo</h3>
+          </div>
+          <div class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-56 group-hover:opacity-100 transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="text-lg sm:text-xl leading-relaxed text-white/75">Trabajamos tu terreno con dedicación real, sin repartirlo entre varias corredoras. Firmamos un contrato que nos compromete a avanzar en serio.</p>
+          </div>
+        </div>
+
+        <div class="group border-b border-white/10 py-6 md:py-7 grid md:grid-cols-[1.3fr_1fr] gap-3 md:gap-16 items-start">
+          <div class="flex items-start gap-3">
+            <span class="text-sm sm:text-base font-medium tracking-wider text-white/40 group-hover:text-white/70 transition-colors duration-700 pt-2 sm:pt-3">03</span>
+            <h3 class="text-3xl sm:text-4xl text-white/50 group-hover:text-white transition-colors duration-700">Servicios jurídicos</h3>
+          </div>
+          <div class="max-h-0 opacity-0 overflow-hidden group-hover:max-h-56 group-hover:opacity-100 transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <p class="text-lg sm:text-xl leading-relaxed text-white/75">Revisamos que el terreno esté legalmente en orden y ayudamos con los contratos. Un respaldo extra para que compres, vendas o arriendes con tranquilidad.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogo" class="relative bg-[#1c1a20] px-8 md:px-28 py-20 md:py-28">
+    <div class="max-w-[1190px] mx-auto">
+      <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div>
+          <span class="text-xs tracking-[0.15em] uppercase text-white/70">Catálogo</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl md:text-[2rem] leading-snug max-w-2xl">
+            <span class="font-light text-white/80">Terrenos agrícolas, industriales y urbanos, en venta o arriendo. </span>
+            <span class="font-semibold">Cada uno revisado antes de publicarse.</span>
+          </h2>
+        </div>
+
+        <a href="/catalogo" class="group inline-flex items-center flex-shrink-0">
+          <span class="border border-white/20 rounded-full pl-6 pr-5 h-11 flex items-center text-xs sm:text-sm tracking-wide whitespace-nowrap group-hover:bg-white/15 transition-colors">Ver Catálogo Completo</span>
+          <span class="h-11 w-11 -ml-px border border-white/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-white/15 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-500 ease-out group-hover:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5 19.5 4.5m0 0h-11.25m11.25 0v11.25" />
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="reveal mt-14 md:mt-16 grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1708549750156-2d138edf846a?w=800&q=80&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">00.000 UF</span>
+          <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+          <div class="absolute left-4 right-4 bottom-4">
+            <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
+              <span class="block text-white font-semibold text-lg">Lorem ipsum dolor</span>
+              <div class="max-h-0 group-hover:max-h-5 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <span class="block mt-1 text-xs text-white/80 whitespace-nowrap">Comuna, Región&emsp;Categoría&emsp;000M2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1694730652852-9404a2d0214b?w=800&q=80&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">00.000 UF</span>
+          <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+          <div class="absolute left-4 right-4 bottom-4">
+            <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
+              <span class="block text-white font-semibold text-lg">Lorem ipsum dolor</span>
+              <div class="max-h-0 group-hover:max-h-5 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <span class="block mt-1 text-xs text-white/80 whitespace-nowrap">Comuna, Región&emsp;Categoría&emsp;000M2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1720183093696-f2a999e721a2?w=800&q=80&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">00.000 UF</span>
+          <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+          <div class="absolute left-4 right-4 bottom-4">
+            <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
+              <span class="block text-white font-semibold text-lg">Lorem ipsum dolor</span>
+              <div class="max-h-0 group-hover:max-h-5 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <span class="block mt-1 text-xs text-white/80 whitespace-nowrap">Comuna, Región&emsp;Categoría&emsp;000M2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1700895635991-7bd436ed6fdb?w=800&q=80&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">00.000 UF</span>
+          <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+          <div class="absolute left-4 right-4 bottom-4">
+            <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
+              <span class="block text-white font-semibold text-lg">Lorem ipsum dolor</span>
+              <div class="max-h-0 group-hover:max-h-5 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <span class="block mt-1 text-xs text-white/80 whitespace-nowrap">Comuna, Región&emsp;Categoría&emsp;000M2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1720199197516-c6d2191ac915?w=800&q=80&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">00.000 UF</span>
+          <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+          <div class="absolute left-4 right-4 bottom-4">
+            <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
+              <span class="block text-white font-semibold text-lg">Lorem ipsum dolor</span>
+              <div class="max-h-0 group-hover:max-h-5 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <span class="block mt-1 text-xs text-white/80 whitespace-nowrap">Comuna, Región&emsp;Categoría&emsp;000M2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1721454623235-d71577351010?w=800&q=80&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">00.000 UF</span>
+          <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+          <div class="absolute left-4 right-4 bottom-4">
+            <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
+              <span class="block text-white font-semibold text-lg">Lorem ipsum dolor</span>
+              <div class="max-h-0 group-hover:max-h-5 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <span class="block mt-1 text-xs text-white/80 whitespace-nowrap">Comuna, Región&emsp;Categoría&emsp;000M2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="relative bg-[#1c1a20] px-8 md:px-28 pb-10 md:pb-14">
+    <div class="max-w-[1190px] mx-auto">
+      <div class="reveal bg-[#373833] rounded-2xl p-10 md:p-14 grid md:grid-cols-[1.3fr_1fr] gap-10 md:gap-16 items-center">
+        <div>
+          <span class="text-xs tracking-[0.15em] uppercase text-white/70">Contacto</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl md:text-[2rem] leading-snug">
+            <span class="font-light text-white/80">Hablemos sobre</span><br>
+            <span class="font-semibold">tu próximo terreno.</span>
+          </h2>
+        </div>
+
+        <div class="border-t border-b border-white/15 divide-y divide-white/15">
+          <a href="tel:+56900000000" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+            </svg>
+            <span class="text-base sm:text-lg">+569 0000 0000</span>
+          </a>
+          <a href="mailto:contacto@nalkalands.cl" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>
+            <span class="text-base sm:text-lg">contacto@nalkalands.cl</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal mt-10 md:mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <span class="text-sm tracking-[0.2em] uppercase font-semibold text-white/60">Nalka Lands</span>
+        <span class="text-sm text-white/50">Terrenos agrícolas, rurales y de desarrollo, en todo Chile.</span>
+      </div>
+    </div>
+  </section>
+
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+
+  const siteNav = document.getElementById('site-nav');
+  const navLogo = document.getElementById('nav-logo');
+  let ticking = false;
+  function updateOnScroll() {
+    const scrolled = window.scrollY > 20;
+    siteNav.style.backgroundColor = scrolled ? 'rgba(0,0,0,0.7)' : 'transparent';
+    siteNav.style.paddingTop = scrolled ? '12px' : '';
+    siteNav.style.paddingBottom = scrolled ? '12px' : '';
+    navLogo.style.transform = scrolled ? 'scale(0.8)' : 'scale(1)';
+
+    ticking = false;
+  }
+  siteNav.style.backgroundColor = 'transparent';
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateOnScroll);
+      ticking = true;
+    }
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('is-visible'), i * 220);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+<a href="https://wa.me/56900000000" target="_blank" rel="noopener" aria-label="WhatsApp" class="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-[#373833] flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+  <svg class="h-7 w-7 text-white" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+</body>
+</html>

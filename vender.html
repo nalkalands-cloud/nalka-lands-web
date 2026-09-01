@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vende o Arrienda tu Terreno | Nalka Lands</title>
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { manrope: ['Manrope', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Manrope', sans-serif; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes bounce-chevron {
+    0%, 100% { transform: translateY(0); opacity: .7; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
+  .chevron-bounce { animation: bounce-chevron 2.2s ease-in-out infinite; }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] { -moz-appearance: textfield; }
+
+  select option { background-color: #1c1a20; }
+</style>
+</head>
+<body class="bg-[#1c1a20] text-white antialiased">
+
+  <div class="relative overflow-hidden">
+
+    <video
+      class="absolute inset-0 w-full h-full object-cover z-0"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="assets/img/vender-poster.jpg"
+    >
+      <source src="assets/video/vender-mobile.mp4" media="(max-width: 768px)" type="video/mp4">
+      <source src="assets/video/vender.webm" type="video/webm">
+      <source src="assets/video/vender.mp4" type="video/mp4">
+    </video>
+
+    <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/65 via-black/55 to-black/85"></div>
+
+    <nav id="site-nav" class="fixed top-0 inset-x-0 z-30 px-8 md:px-28 py-6 md:py-8 transition-all duration-300">
+      <div class="max-w-[1190px] mx-auto flex items-center justify-between">
+        <div class="hidden md:flex items-center gap-10 text-xs tracking-[0.15em] uppercase text-white/90">
+          <a href="/#quienes-somos" class="hover:text-white transition-colors">Quienes Somos</a>
+          <a href="/#servicios" class="hover:text-white transition-colors">Servicios</a>
+        </div>
+
+        <a href="/" aria-label="Ir al inicio">
+          <img id="nav-logo" src="assets/img/nalka-lands-logo.svg" alt="Nalka Lands" class="h-6 md:h-7 w-auto transition-transform duration-300 origin-center">
+        </a>
+
+        <div class="hidden md:flex items-center gap-10 text-xs tracking-[0.15em] uppercase text-white/90">
+          <a href="/catalogo" class="hover:text-white transition-colors">Catálogo</a>
+          <a href="/#contacto" class="hover:text-white transition-colors">Contacto</a>
+        </div>
+
+        <button id="menu-toggle" aria-label="Abrir menú" class="md:hidden text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden fixed top-[72px] inset-x-0 z-30 bg-black/80 backdrop-blur-sm px-6 py-6 flex flex-col gap-5 text-sm tracking-[0.15em] uppercase text-white/90">
+      <a href="/#quienes-somos" class="hover:text-white transition-colors">Quienes Somos</a>
+      <a href="/#servicios" class="hover:text-white transition-colors">Servicios</a>
+      <a href="/catalogo" class="hover:text-white transition-colors">Catálogo</a>
+      <a href="/#contacto" class="hover:text-white transition-colors">Contacto</a>
+    </div>
+
+    <section class="relative z-20 min-h-screen flex flex-col items-center justify-center text-center px-8">
+      <span class="reveal text-xs tracking-[0.15em] uppercase text-white/70">Vende o arrienda tu terreno</span>
+      <h1 class="reveal font-light text-4xl sm:text-5xl md:text-6xl leading-tight max-w-3xl mt-5">
+        Vende o arrienda tu terreno,<br>con el respaldo de expertos.
+      </h1>
+      <p class="reveal font-light text-base sm:text-xl text-white/90 mt-6 max-w-xl leading-relaxed">
+        Evaluamos, publicamos y gestionamos todo el proceso.<br>Tú solo completas el formulario.
+      </p>
+
+      <div class="reveal flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-10 text-xs sm:text-sm text-white/85">
+        <div class="flex items-center gap-2">
+          <svg class="h-4 w-4 text-white/60 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+          <span>Evaluación de tu terreno sin costo</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="h-4 w-4 text-white/60 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+          <span>Comisión solo al concretar la venta</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="h-4 w-4 text-white/60 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+          <span>Difusión a compradores calificados en todo Chile</span>
+        </div>
+      </div>
+
+      <div class="reveal mt-10">
+        <a href="#form" class="border border-white/70 rounded-full px-8 py-3 text-xs tracking-[0.15em] uppercase bg-white/10 backdrop-blur-md hover:bg-white/15 transition-colors transform-gpu">
+          Cotizar Mi Terreno
+        </a>
+      </div>
+
+      <a href="#form" aria-label="Ir al formulario" class="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <svg class="chevron-bounce h-6 w-6 text-white/80" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </a>
+    </section>
+
+  </div>
+
+  <section id="form" class="relative bg-[#1c1a20] px-8 md:px-28 py-20 md:py-28">
+    <div class="max-w-[1190px] mx-auto">
+
+      <div class="reveal max-w-2xl">
+        <span class="text-xs tracking-[0.15em] uppercase text-white/70">Formulario</span>
+        <h2 class="mt-4 text-2xl sm:text-3xl md:text-[2rem] leading-snug sm:leading-snug md:leading-snug">
+          <span class="font-light text-white/80">Cuéntanos sobre tu terreno y </span>
+          <span class="font-semibold">te contactamos por WhatsApp.</span>
+        </h2>
+      </div>
+
+      <form id="sell-form" class="reveal mt-14 grid md:grid-cols-2 gap-x-10 gap-y-8">
+
+        <div class="flex flex-col gap-2">
+          <label for="form-nombre" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Nombre completo</label>
+          <input type="text" id="form-nombre" required placeholder="Tu nombre" class="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-2.5 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/60">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="form-telefono" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Teléfono</label>
+          <input type="tel" id="form-telefono" required placeholder="+56 9 0000 0000" class="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-2.5 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/60">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="form-email" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Email <span class="normal-case text-white/30">(opcional)</span></label>
+          <input type="email" id="form-email" placeholder="tucorreo@ejemplo.com" class="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-2.5 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/60">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="form-location" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Comuna / Región</label>
+          <input type="text" id="form-location" required placeholder="Ej: Los Ángeles, Biobío" class="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-2.5 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/60">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="form-tipo" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Operación</label>
+          <div class="relative">
+            <select id="form-tipo" required class="appearance-none w-full bg-transparent border-0 border-b border-white/20 rounded-none pr-8 py-2.5 text-sm sm:text-base text-white focus:outline-none focus:border-white/60 cursor-pointer">
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="venta">Vender</option>
+              <option value="arriendo">Arrendar</option>
+            </select>
+            <svg class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="form-categoria" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Categoría</label>
+          <div class="relative">
+            <select id="form-categoria" required class="appearance-none w-full bg-transparent border-0 border-b border-white/20 rounded-none pr-8 py-2.5 text-sm sm:text-base text-white focus:outline-none focus:border-white/60 cursor-pointer">
+              <option value="" disabled selected>Selecciona una categoría</option>
+              <option value="agricola">Agrícola</option>
+              <option value="industrial">Industrial</option>
+              <option value="urbana">Urbana Residencial</option>
+            </select>
+            <svg class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between gap-3">
+            <label for="form-size" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Tamaño del terreno</label>
+            <div class="flex items-center gap-1">
+              <button type="button" id="form-unit-m2" data-unit="m2" class="unit-btn px-2 py-0.5 rounded-full border text-[9px] tracking-wide uppercase transition-colors border-white/30 bg-white/10 text-white">m²</button>
+              <button type="button" id="form-unit-ha" data-unit="ha" class="unit-btn px-2 py-0.5 rounded-full border text-[9px] tracking-wide uppercase transition-colors border-white/10 text-white/40">ha</button>
+            </div>
+          </div>
+          <input type="number" id="form-size" required min="0" placeholder="Ej: 25000" class="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-2.5 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/60">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="form-price" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Precio esperado (UF) <span class="normal-case text-white/30">(opcional)</span></label>
+          <input type="number" id="form-price" min="0" placeholder="Ej: 8500" class="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 py-2.5 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/60">
+        </div>
+
+        <div class="flex flex-col gap-2 md:col-span-2">
+          <label for="form-comments" class="text-[11px] tracking-[0.15em] uppercase text-white/50">Comentarios adicionales <span class="normal-case text-white/30">(opcional)</span></label>
+          <textarea id="form-comments" rows="3" placeholder="Cuéntanos más sobre el terreno, accesos, uso actual, etc." class="w-full bg-transparent border border-white/15 rounded-xl px-4 py-3 text-sm sm:text-base text-white placeholder-white/30 focus:outline-none focus:border-white/40 resize-none"></textarea>
+        </div>
+
+        <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4 mt-2">
+          <button type="submit" class="group inline-flex items-center justify-center gap-3 bg-[#373833] hover:bg-[#40423b] transition-colors rounded-full px-8 py-3.5 text-xs tracking-[0.15em] uppercase flex-shrink-0">
+            <svg class="h-4 w-4" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Enviar por WhatsApp
+          </button>
+          <p class="text-xs text-white/50 leading-relaxed">Al enviar, se abrirá WhatsApp con tus datos ya redactados para que confirmes el envío.</p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <section id="contacto" class="relative bg-[#1c1a20] px-8 md:px-28 pb-10 md:pb-14">
+    <div class="max-w-[1190px] mx-auto">
+      <div class="reveal bg-[#373833] rounded-2xl p-10 md:p-14 grid md:grid-cols-[1.3fr_1fr] gap-10 md:gap-16 items-center">
+        <div>
+          <span class="text-xs tracking-[0.15em] uppercase text-white/70">Contacto</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl md:text-[2rem] leading-snug">
+            <span class="font-light text-white/80">Hablemos sobre</span><br>
+            <span class="font-semibold">tu próximo terreno.</span>
+          </h2>
+        </div>
+
+        <div class="border-t border-b border-white/15 divide-y divide-white/15">
+          <a href="tel:+56900000000" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+            </svg>
+            <span class="text-base sm:text-lg">+569 0000 0000</span>
+          </a>
+          <a href="mailto:contacto@nalkalands.cl" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>
+            <span class="text-base sm:text-lg">contacto@nalkalands.cl</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal mt-10 md:mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <span class="text-sm tracking-[0.2em] uppercase font-semibold text-white/60">Nalka Lands</span>
+        <span class="text-sm text-white/50">Terrenos agrícolas, rurales y de desarrollo, en todo Chile.</span>
+      </div>
+    </div>
+  </section>
+
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+
+  const siteNav = document.getElementById('site-nav');
+  const navLogo = document.getElementById('nav-logo');
+  let ticking = false;
+  function updateOnScroll() {
+    const scrolled = window.scrollY > 20;
+    siteNav.style.backgroundColor = scrolled ? 'rgba(0,0,0,0.7)' : 'transparent';
+    siteNav.style.paddingTop = scrolled ? '12px' : '';
+    siteNav.style.paddingBottom = scrolled ? '12px' : '';
+    navLogo.style.transform = scrolled ? 'scale(0.8)' : 'scale(1)';
+    ticking = false;
+  }
+  siteNav.style.backgroundColor = 'transparent';
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateOnScroll);
+      ticking = true;
+    }
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('is-visible'), i * 150);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  let sizeUnit = 'm2';
+  const unitBtns = document.querySelectorAll('.unit-btn');
+  unitBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      sizeUnit = btn.dataset.unit;
+      unitBtns.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('border-white/30', active);
+        b.classList.toggle('bg-white/10', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('border-white/10', !active);
+        b.classList.toggle('text-white/40', !active);
+      });
+    });
+  });
+
+  document.getElementById('sell-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const nombre = document.getElementById('form-nombre').value.trim();
+    const telefono = document.getElementById('form-telefono').value.trim();
+    const email = document.getElementById('form-email').value.trim();
+    const ubicacion = document.getElementById('form-location').value.trim();
+    const tipoSelect = document.getElementById('form-tipo');
+    const tipoText = tipoSelect.options[tipoSelect.selectedIndex].text;
+    const catSelect = document.getElementById('form-categoria');
+    const categoriaText = catSelect.options[catSelect.selectedIndex].text;
+    const tamano = document.getElementById('form-size').value.trim();
+    const unidad = sizeUnit === 'ha' ? 'ha' : 'm²';
+    const precio = document.getElementById('form-price').value.trim();
+    const comentarios = document.getElementById('form-comments').value.trim();
+
+    const accion = tipoSelect.value === 'venta' ? 'vender' : 'arrendar';
+    const lines = [];
+    lines.push(`Hola, me gustaría ${accion} mi terreno. Estos son mis datos:`);
+    lines.push('');
+    lines.push(`Nombre: ${nombre}`);
+    lines.push(`Teléfono: ${telefono}`);
+    if (email) lines.push(`Email: ${email}`);
+    lines.push('');
+    lines.push('Información del terreno:');
+    lines.push(`Operación: ${tipoText}`);
+    lines.push(`Categoría: ${categoriaText}`);
+    lines.push(`Tamaño: ${tamano} ${unidad}`);
+    if (precio) lines.push(`Precio esperado: ${precio} UF`);
+    lines.push(`Ubicación: ${ubicacion}`);
+    if (comentarios) lines.push(`Comentarios: ${comentarios}`);
+
+    const message = lines.join('\n');
+    const url = `https://wa.me/56900000000?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+</script>
+
+<a href="https://wa.me/56900000000" target="_blank" rel="noopener" aria-label="WhatsApp" class="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-[#373833] flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+  <svg class="h-7 w-7 text-white" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+</body>
+</html>
