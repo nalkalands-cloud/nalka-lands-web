@@ -443,7 +443,10 @@
     const catSlug = CATEGORY_SLUGS[p.categoria] || 'agricola';
     const img = (p.imagenes && p.imagenes[0]) || '';
     const ubicacion = [p.comuna, p.region].filter(Boolean).join(', ');
-    const meta = [ubicacion, p.categoria, sizeLabel].filter(Boolean).join('&emsp;');
+    const meta = [ubicacion, p.categoria, sizeLabel]
+      .filter(Boolean)
+      .map(part => `<span class="inline-block whitespace-nowrap">${part}</span>`)
+      .join('&emsp;');
 
     const imgTag = img
       ? `<img src="${img}" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">`
