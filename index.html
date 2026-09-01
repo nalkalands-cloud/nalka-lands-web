@@ -51,6 +51,8 @@
       muted
       loop
       playsinline
+      webkit-playsinline="true"
+      disableRemotePlayback
       poster="assets/img/hero-poster.jpg"
     >
       <source src="assets/video/hero-mobile.mp4" media="(max-width: 768px)" type="video/mp4">
@@ -84,7 +86,7 @@
       </div>
     </nav>
 
-    <div id="mobile-menu" class="hidden md:hidden fixed top-[72px] inset-x-0 z-30 bg-black/80 backdrop-blur-sm px-6 py-6 flex flex-col gap-5 text-sm tracking-[0.15em] uppercase text-white/90">
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-30 bg-[#1c1a20] px-8 flex flex-col items-center justify-center gap-8 text-lg tracking-[0.15em] uppercase text-white/90">
       <a href="#quienes-somos" class="hover:text-white transition-colors">Quienes Somos</a>
       <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
       <a href="/catalogo" class="hover:text-white transition-colors">Catálogo</a>
@@ -172,8 +174,8 @@
 
     <div class="relative z-20 px-8 md:px-28 pt-[601px] md:pt-[253px]">
       <div class="max-w-[1190px] mx-auto">
-      <div class="reveal flex items-start gap-8 md:gap-16">
-        <span class="w-20 md:w-28 flex-shrink-0 pt-1 text-xs tracking-[0.15em] uppercase text-white/70">Servicios</span>
+      <div class="reveal flex flex-col md:flex-row items-start gap-3 md:gap-16">
+        <span class="md:w-28 flex-shrink-0 pt-1 text-xs tracking-[0.15em] uppercase text-white/70">Servicios</span>
         <h2 class="text-2xl sm:text-3xl md:text-[2rem] leading-snug sm:leading-snug md:leading-snug">
           <span class="font-light text-white/80">Compra, venta y arriendo de terrenos, </span>
           <span class="font-semibold">con estudio<br>de título y gestión completa del proceso.</span>
@@ -333,9 +335,44 @@
 </div>
 
 <script>
-  document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
+  // Force-start background videos: some mobile browsers ignore the `autoplay`
+  // attribute (e.g. after the tab was backgrounded, low-power mode, or certain
+  // in-app browsers), so we also try to kick off playback from JS and retry
+  // on the first touch/click if the browser blocked it initially.
+  document.querySelectorAll('video[autoplay]').forEach((video) => {
+    video.muted = true;
+    const tryPlay = () => video.play().catch(() => {});
+    tryPlay();
+    video.addEventListener('loadedmetadata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+    document.addEventListener('click', tryPlay, { once: true });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) tryPlay();
+    });
   });
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>`;
+  const menuIconClose = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>`;
+
+  function openMobileMenu() {
+    mobileMenu.classList.remove('hidden');
+    menuToggle.innerHTML = menuIconClose;
+    menuToggle.setAttribute('aria-label', 'Cerrar menú');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    menuToggle.innerHTML = menuIconOpen;
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
+    document.body.style.overflow = '';
+  }
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu();
+  });
+  mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobileMenu));
 
   const siteNav = document.getElementById('site-nav');
   const navLogo = document.getElementById('nav-logo');

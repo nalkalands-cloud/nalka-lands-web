@@ -69,7 +69,7 @@
     </div>
   </nav>
 
-  <div id="mobile-menu" class="hidden md:hidden fixed top-[72px] inset-x-0 z-30 bg-black/80 backdrop-blur-sm px-6 py-6 flex flex-col gap-5 text-sm tracking-[0.15em] uppercase text-white/90">
+  <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-30 bg-[#1c1a20] px-8 flex flex-col items-center justify-center gap-8 text-lg tracking-[0.15em] uppercase text-white/90">
     <a href="/#quienes-somos" class="hover:text-white transition-colors">Quienes Somos</a>
     <a href="/#servicios" class="hover:text-white transition-colors">Servicios</a>
     <a href="/catalogo" class="hover:text-white transition-colors">Catálogo</a>
@@ -271,9 +271,27 @@
 </div>
 
 <script>
-  document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>`;
+  const menuIconClose = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>`;
+
+  function openMobileMenu() {
+    mobileMenu.classList.remove('hidden');
+    menuToggle.innerHTML = menuIconClose;
+    menuToggle.setAttribute('aria-label', 'Cerrar menú');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    menuToggle.innerHTML = menuIconOpen;
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
+    document.body.style.overflow = '';
+  }
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu();
   });
+  mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobileMenu));
 
   const siteNav = document.getElementById('site-nav');
   const navLogo = document.getElementById('nav-logo');
