@@ -100,7 +100,7 @@
       </p>
 
       <div class="reveal flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-10">
-        <a href="#catalogo" class="border border-white/70 rounded-full px-8 py-3 text-xs tracking-[0.15em] uppercase bg-white/10 backdrop-blur-md hover:bg-white/15 transition-colors transform-gpu">
+        <a href="#catalogo" class="border border-white/70 rounded-full px-8 py-3 text-xs tracking-[0.15em] uppercase bg-black/35 hover:bg-black/50 transition-colors">
           Ver Propiedades
         </a>
         <a href="/vender" class="text-xs tracking-[0.15em] uppercase text-white/90 hover:text-white transition-colors underline-offset-4 hover:underline">
@@ -254,11 +254,11 @@
         </div>
 
         <div class="border-t border-b border-white/15 divide-y divide-white/15">
-          <a href="tel:+56900000000" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
+          <a href="tel:+56974798365" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
             </svg>
-            <span class="text-base sm:text-lg">+569 0000 0000</span>
+            <span class="text-base sm:text-lg">+569 7479 8365</span>
           </a>
           <a href="mailto:contacto@nalkalands.cl" class="flex items-center gap-4 py-4 hover:text-white/70 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -320,6 +320,11 @@
           <div id="modal-attrs" class="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-x-8 gap-y-3 text-sm"></div>
 
           <p id="modal-description" class="mt-6 text-sm sm:text-base text-white/80 leading-relaxed whitespace-pre-line"></p>
+
+          <a id="modal-whatsapp" href="https://wa.me/56974798365" target="_blank" rel="noopener" class="mt-8 flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] transition-colors text-white font-semibold rounded-full py-3.5">
+            <svg class="h-5 w-5" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Consultar por WhatsApp
+          </a>
         </div>
 
       </div>
@@ -424,8 +429,9 @@
       <div class="property-card group relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/5 cursor-pointer" data-id="${p.id}">
         ${imgTag}
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>
-        <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow">${priceLabel}</span>
-        <span class="absolute top-4 right-4 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">${escapeHtml(p.operacion)}</span>
+        <div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/60 to-transparent"></div>
+        <span class="absolute top-4 left-4 text-white font-semibold text-sm sm:text-base drop-shadow-md">${priceLabel}</span>
+        <span class="absolute top-4 right-4 bg-black/40 backdrop-blur-md border border-white/25 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">${escapeHtml(p.operacion)}</span>
         <div class="absolute left-4 right-4 bottom-4">
           <div class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5">
             <span class="block text-white font-semibold text-lg">${escapeHtml(p.titulo)}</span>
@@ -474,6 +480,7 @@
   const modalOperacion = document.getElementById('modal-operacion');
   const modalAttrs = document.getElementById('modal-attrs');
   const modalDescription = document.getElementById('modal-description');
+  const modalWhatsapp = document.getElementById('modal-whatsapp');
 
   function updateModalImage() {
     const hasImages = modalImages.length > 0;
@@ -496,6 +503,10 @@
     modalImageIndex = 0;
     updateModalImage();
 
+    // Preload the rest of the gallery in the background so prev/next feels instant
+    // instead of waiting for each image to download on click.
+    modalImages.forEach((src) => { const img = new Image(); img.src = src; });
+
     modalPrice.textContent = formatPrice(p);
     modalTitle.textContent = p.titulo;
     modalOperacion.textContent = p.operacion;
@@ -513,6 +524,9 @@
     `).join('');
 
     modalDescription.textContent = p.descripcion || '';
+
+    const waMessage = `Hola, me interesa la propiedad "${p.titulo}" que vi en el catálogo de Nalka Lands.`;
+    modalWhatsapp.href = `https://wa.me/56974798365?text=${encodeURIComponent(waMessage)}`;
 
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -548,7 +562,7 @@
   });
 </script>
 
-<a href="https://wa.me/56900000000" target="_blank" rel="noopener" aria-label="WhatsApp" class="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-[#373833] flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+<a href="https://wa.me/56974798365" target="_blank" rel="noopener" aria-label="WhatsApp" class="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-[#373833] flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
   <svg class="h-7 w-7 text-white" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
 </a>
 
