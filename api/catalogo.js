@@ -12,8 +12,28 @@ module.exports = async (req, res) => {
     return;
   }
 
+  // Field IDs (from list_tables_for_base) — stable even if the client renames a field's label.
+  const FIELDS = {
+    titulo: 'fldq37Ssx0tFytaVj',
+    descripcion: 'fldzFeBnS5BmzrMET',
+    precio: 'fldM0AKN3g5ElWjNd',
+    tamano: 'fldjjkEzjgqbiUqOW',
+    unidad: 'fldtO0gHD1SEtWNnh',
+    categoria: 'fldJ7DC216FKKUSSG',
+    operacion: 'fld5gb0B8ulmu5tob',
+    comuna: 'fldKmzMSW5XlWgjaT',
+    region: 'fldOf0UsUEvQiDTxc',
+    imagenes: 'fldcv38plX3QKhOqK',
+    publicado: 'fldtQFoowtjAwN7Ji',
+    moneda: 'fldx89KFQGuP4j7hY',
+    estadoPrecio: 'fldd9C1DymgzZGwYd',
+    precioMax: 'fldKjyvAXlV9KQnSO',
+    periodoArriendo: 'fld01vjFpNf0BrDin',
+    tamanoMax: 'flds7AshfY0fQBKtR',
+  };
+
   try {
-    const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${encodeURIComponent('{Publicado}=1')}&pageSize=100`;
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${encodeURIComponent('{Publicado}=1')}&pageSize=100&returnFieldsByFieldId=true`;
     const airtableRes = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -35,21 +55,21 @@ module.exports = async (req, res) => {
       const f = record.fields || {};
       return {
         id: record.id,
-        titulo: f['Título'] || '',
-        descripcion: f['Descripción'] || '',
-        precioUF: typeof f['Precio (UF)'] === 'number' ? f['Precio (UF)'] : null,
-        precioMax: typeof f['Precio Máx'] === 'number' ? f['Precio Máx'] : null,
-        moneda: f['Moneda'] || 'UF',
-        estadoPrecio: f['Estado del Precio'] || 'Definido',
-        periodoArriendo: f['Período de Arriendo'] || '',
-        tamano: typeof f['Tamaño'] === 'number' ? f['Tamaño'] : null,
-        tamanoMax: typeof f['Tamaño Máx'] === 'number' ? f['Tamaño Máx'] : null,
-        unidad: f['Unidad'] || 'm²',
-        categoria: f['Categoría'] || '',
-        operacion: f['Operación'] || '',
-        comuna: f['Comuna'] || '',
-        region: f['Región'] || '',
-        imagenes: Array.isArray(f['Imágenes']) ? f['Imágenes'].map((a) => a.url) : [],
+        titulo: f[FIELDS.titulo] || '',
+        descripcion: f[FIELDS.descripcion] || '',
+        precioUF: typeof f[FIELDS.precio] === 'number' ? f[FIELDS.precio] : null,
+        precioMax: typeof f[FIELDS.precioMax] === 'number' ? f[FIELDS.precioMax] : null,
+        moneda: f[FIELDS.moneda] || 'UF',
+        estadoPrecio: f[FIELDS.estadoPrecio] || 'Definido',
+        periodoArriendo: f[FIELDS.periodoArriendo] || '',
+        tamano: typeof f[FIELDS.tamano] === 'number' ? f[FIELDS.tamano] : null,
+        tamanoMax: typeof f[FIELDS.tamanoMax] === 'number' ? f[FIELDS.tamanoMax] : null,
+        unidad: f[FIELDS.unidad] || 'm²',
+        categoria: f[FIELDS.categoria] || '',
+        operacion: f[FIELDS.operacion] || '',
+        comuna: f[FIELDS.comuna] || '',
+        region: f[FIELDS.region] || '',
+        imagenes: Array.isArray(f[FIELDS.imagenes]) ? f[FIELDS.imagenes].map((a) => a.url) : [],
       };
     });
 
