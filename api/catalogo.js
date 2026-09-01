@@ -19,14 +19,7 @@ module.exports = async (req, res) => {
     });
 
     if (!airtableRes.ok) {
-      const body = await airtableRes.text();
-      res.status(502).json({
-        error: 'Airtable request failed',
-        status: airtableRes.status,
-        body,
-        tokenPrefix: token.slice(0, 6),
-        tokenLength: token.length,
-      });
+      res.status(502).json({ error: 'Airtable request failed', status: airtableRes.status });
       return;
     }
 
@@ -53,6 +46,6 @@ module.exports = async (req, res) => {
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
     res.status(200).json({ properties });
   } catch (err) {
-    res.status(500).json({ error: 'Unexpected error fetching catálogo', message: String(err && err.message) });
+    res.status(500).json({ error: 'Unexpected error fetching catálogo' });
   }
 };
