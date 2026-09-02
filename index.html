@@ -499,6 +499,15 @@
       grid.innerHTML = properties.map(renderHomeCard).join('');
     } catch (err) {
       grid.innerHTML = '<p class="col-span-full text-center text-white/50 py-16">No se pudo cargar el catálogo.</p>';
+    } finally {
+      // The catálogo grid above #contacto grows once it finishes loading, which
+      // shifts the page and leaves an incoming #hash link (e.g. /#contacto from
+      // another page) scrolled to the wrong spot. Re-settle onto it once the
+      // grid has its final height.
+      if (location.hash) {
+        const target = document.querySelector(location.hash);
+        if (target) target.scrollIntoView();
+      }
     }
   })();
 
